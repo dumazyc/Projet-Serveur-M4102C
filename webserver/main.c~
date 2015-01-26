@@ -8,6 +8,6 @@ int main (int argc, char **argv)
 		return 42;
 	}
 	printf ("Need an advice ?\n");
-	return 0; 
+	return 0;
 }
 
