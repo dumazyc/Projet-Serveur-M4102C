@@ -1,5 +1,6 @@
 # include <stdio.h>
 # include <string.h>
+#include "socket.h"
 int main (int argc, char **argv)
 {
 	/* Arnold Robbins in the LJ of February ’95 , describing RCS */
@@ -8,6 +9,9 @@ int main (int argc, char **argv)
 		return 42;
 	}
 	printf ("Need an advice ?\n");
+	while(1){
+		creer_serveur(8000);
+	}
 	return 0; 
 }
 
