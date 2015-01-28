@@ -1,7 +1,11 @@
+Question 1 : le serveur à l'air de redémarrer.
 
+Question 2 : cela ne fait rien.
 
-
-
+Question 3 : Cela affiche le message suivant "Trying ::1...
+telnet: connect to address ::1: Connection refused
+telnet: Unable to connect to remote host: Connection refused"
+La cause de ce message est 
 
 Question 4 : 
-Cela affiche le message suivant : "bind socker_serveur : Address already in use" parce que 
+Le message de bienvenue ne s'affiche pas sur le 2e client car le serveur ne peut pas gérer 2 connexions en même temps.

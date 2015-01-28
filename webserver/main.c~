@@ -9,9 +9,9 @@ int main (int argc, char **argv)
 		return 42;
 	}
 	printf ("Need an advice ?\n");
-	printf("a");
+	while(1){
 		creer_serveur(8080);
-	
+	]
 	return 0; 
 }
 

@@ -1,5 +1,6 @@
 #include "socket.h"
 #include <sys/socket.h>
+#include <sys/types.h>
 #include <netinet/in.h>
 #include<stdio.h>
 #include<unistd.h>
@@ -42,8 +43,27 @@ int creer_serveur(int port){
 		return -1;
 	}
 	/* On peut maintenant dialoguer avec le client */
-	const char * message_bienvenue = "Bienvenue sur le serveur de Ludovic et Clément ! " ;
+	const char * message_bienvenue = "Bienvenue sur le serveur de Ludovic et Clément ! \n" ;
+	sleep(1);
 	write ( socket_client , message_bienvenue , strlen(message_bienvenue));
-
-	return 0;
+	
+	while(1){
+	char b [50]="";
+	
+		/*char buf[100]="";
+		
+		int size = read(socket_client,buf,sizeof(buf));
+		
+		write(socket_client,buf,size);*/
+		int cb=0;
+		cb = recv(socket_client,b,sizeof(b),0);
+		if( cb <= 0 )
+   		{
+   			fflush(stdout);
+    		return -1;
+    	}else{
+    	write(socket_client,b,cb);
+    	}
+	}
+	return socket_serveur;
 }
