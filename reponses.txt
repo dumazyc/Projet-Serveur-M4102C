@@ -1,4 +1,7 @@
-Question 1 : 
+
+
+
+
+
+Question 4 : 
 Cela affiche le message suivant : "bind socker_serveur : Address already in use" parce que 
-
-

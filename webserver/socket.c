@@ -7,7 +7,6 @@
 
 
 int creer_serveur(int port){
-
 	int socket_serveur ;
 	socket_serveur = socket (AF_INET,SOCK_STREAM, 0);
 	if ( socket_serveur == -1)
@@ -33,6 +32,7 @@ int creer_serveur(int port){
 		/* traitement d ’ erreur */
 		return -1;
 	}
+	
 	int socket_client ;
 	socket_client = accept (socket_serveur,NULL,NULL);
 	if (socket_client == -1)
@@ -43,7 +43,6 @@ int creer_serveur(int port){
 	}
 	/* On peut maintenant dialoguer avec le client */
 	const char * message_bienvenue = "Bienvenue sur le serveur de Ludovic et Clément ! " ;
-	printf("%s",message_bienvenue);
 	write ( socket_client , message_bienvenue , strlen(message_bienvenue));
 
 	return 0;
