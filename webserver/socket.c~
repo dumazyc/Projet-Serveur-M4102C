@@ -48,9 +48,9 @@ int creer_serveur(int port){
 	write ( socket_client , message_bienvenue , strlen(message_bienvenue));
 	
 	while(1){
-	/*char b [50]="";
+	char b [50]="";
 	
-		char buf[100]="";
+		/*char buf[100]="";
 		
 		int size = read(socket_client,buf,sizeof(buf));
 		
@@ -59,7 +59,9 @@ int creer_serveur(int port){
 		cb = recv(socket_client,b,sizeof(b),0);
 		if( cb <= 0 )
    		{
+   			printf("client deconnecté\n");
    			fflush(stdout);
+   			socket_client.close();
     		return -1;
     	}else{
     	write(socket_client,b,cb);

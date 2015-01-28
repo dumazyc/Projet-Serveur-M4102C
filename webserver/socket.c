@@ -59,7 +59,10 @@ int creer_serveur(int port){
 		cb = recv(socket_client,b,sizeof(b),0);
 		if( cb <= 0 )
    		{
+   			printf("client deconnecté\n");
    			fflush(stdout);
+   			close(socket_client);
+   			close(socket_serveur);
     		return -1;
     	}else{
     	write(socket_client,b,cb);
