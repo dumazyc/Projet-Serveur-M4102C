@@ -42,8 +42,21 @@ int creer_serveur(int port){
 	return socket_serveur;
 }
 
-void initialiser_signaux(void){
-	if(signal(SIGPIPE, SIG_IGN) == SIG_ERR){
-		perror("signal");
-	}
+void traitement_signal ( int sig )
+{
+printf ( "Signal %d reçu \n " , sig );
 }
+void initialiser_signaux ( void )
+{
+struct sigaction sa ;
+sa.sa_handler = traitement_signal;
+sigemptyset (&sa.sa_mask );
+sa.sa_flags = SA_RESTART ;
+int tmp;
+if ( (tmp =sigaction ( SIGCHLD , &sa , NULL )) == -1)
+{
+perror ( " sigaction ( SIGCHLD ) " );
+}
+traitement_signal(tmp);
+}
+
