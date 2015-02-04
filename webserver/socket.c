@@ -2,14 +2,14 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
-#include<stdio.h>
-#include<unistd.h>
-#include<string.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 #include <signal.h>
-
+#include <wait.h>
 //telnet localhost 8080 --> accéder en tant que client
 int creer_serveur(int port){
-	initialiser_signaux();
+
 	int socket_serveur ;
 	socket_serveur = socket (AF_INET,SOCK_STREAM, 0);
 	if ( socket_serveur == -1)
@@ -38,41 +38,6 @@ int creer_serveur(int port){
 		perror ("listen socket_serveur");
 		/* traitement d ’ erreur */
 		return -1;
-	}
-	
-	int socket_client ;
-	socket_client = accept (socket_serveur,NULL,NULL);
-	if (socket_client == -1)
-	{
-		perror ("accept");
-		/* traitement d ’ erreur */
-		return -1;
-	}
-	/* On peut maintenant dialoguer avec le client */
-	const char * message_bienvenue = "Bienvenue sur le serveur de Ludovic et Clément ! \n" ;
-	sleep(1);
-	write ( socket_client , message_bienvenue , strlen(message_bienvenue));
-	
-	while(1){
-		char b [50]="";
-	
-		/*char buf[100]="";
-		
-		int size = read(socket_client,buf,sizeof(buf));
-		
-		write(socket_client,buf,size);*/
-		int cb=0;
-		cb = recv(socket_client,b,sizeof(b),0);
-		if( cb <= 0 )
-   		{
-   			printf("client deconnecté\n");
-   			fflush(stdout);
-   			close(socket_client);
-   			close(socket_serveur);
-    		return -1;
-    	}else{
-    		write(socket_client,b,cb);
-    	}
 	}
 	return socket_serveur;
 }
