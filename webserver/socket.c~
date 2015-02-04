@@ -8,6 +8,7 @@
 
 //telnet localhost 8080 --> accéder en tant que client
 int creer_serveur(int port){
+	initialiser_signaux();
 	int socket_serveur ;
 	socket_serveur = socket (AF_INET,SOCK_STREAM, 0);
 	if ( socket_serveur == -1)
@@ -52,7 +53,7 @@ int creer_serveur(int port){
 	write ( socket_client , message_bienvenue , strlen(message_bienvenue));
 	
 	while(1){
-	char b [50]="";
+		char b [50]="";
 	
 		/*char buf[100]="";
 		
@@ -69,8 +70,14 @@ int creer_serveur(int port){
    			close(socket_serveur);
     		return -1;
     	}else{
-    	write(socket_client,b,cb);
+    		write(socket_client,b,cb);
     	}
 	}
 	return socket_serveur;
+}
+
+void initialiser_signaux(void){
+	if(signal(SIGPIPE, SIG_IGN) == SIG_ERR){
+		perror("signal");
+	}
 }
