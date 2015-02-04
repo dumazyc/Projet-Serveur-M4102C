@@ -6,7 +6,7 @@
 #include<unistd.h>
 #include<string.h>
 
-
+//telnet localhost 8080 --> accéder en tant que client
 int creer_serveur(int port){
 	int socket_serveur ;
 	socket_serveur = socket (AF_INET,SOCK_STREAM, 0);
@@ -15,6 +15,10 @@ int creer_serveur(int port){
 		perror ( "socket_serveur" );
 		/* traitement de l ’ erreur */
 		return -1;
+	}
+	int optval = 1;
+	if ( setsockopt ( socket_serveur , SOL_SOCKET , SO_REUSEADDR , & optval , sizeof ( int )) == -1){
+		perror ( " Can not set SO_REUSEADDR option " );
 	}
 	/* Utilisation de la socket serveur */
 	struct sockaddr_in saddr ;

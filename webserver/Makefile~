@@ -57,4 +57,4 @@ mrproper : clean
 # de construction des fichiers .o
 # S’il n’existe pas, make invoque automatiquement la règle
 # qui l’a pour cible
-#include makefile.dep
+include makefile.dep
