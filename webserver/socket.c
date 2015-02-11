@@ -7,7 +7,9 @@
 #include <string.h>
 #include <signal.h>
 #include <wait.h>
+#include <stdlib.h>
 //telnet localhost 8080 --> accéder en tant que client
+//ps -eH | grep musta --> voir processus zombie
 int creer_serveur(int port){
 
 	int socket_serveur ;
@@ -44,19 +46,23 @@ int creer_serveur(int port){
 
 void traitement_signal ( int sig )
 {
-printf ( "Signal %d reçu \n " , sig );
+
+	printf ( "Signal %d reçu \n " , sig );
+	waitpid(-1, NULL, WNOHANG);			
+	
 }
 void initialiser_signaux ( void )
 {
-struct sigaction sa ;
-sa.sa_handler = traitement_signal;
-sigemptyset (&sa.sa_mask );
-sa.sa_flags = SA_RESTART ;
-int tmp;
-if ( (tmp =sigaction ( SIGCHLD , &sa , NULL )) == -1)
-{
-perror ( " sigaction ( SIGCHLD ) " );
-}
-traitement_signal(tmp);
+	struct sigaction sa ;
+	sa.sa_handler = traitement_signal;
+	sigemptyset (&sa.sa_mask );
+	sa.sa_flags = SA_RESTART ;
+	int tmp;
+	if ( (tmp =sigaction ( SIGCHLD , &sa , NULL )) == -1)
+	{
+		perror ( " sigaction ( SIGCHLD ) " );
+	}
+	traitement_signal(tmp);
+	
 }
 

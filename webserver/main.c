@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
@@ -48,14 +49,16 @@ int main (/*int argc, char **argv*/void)
 		   			printf("client deconnecté\n");
 		   			fflush(stdout);
 		   			close(socket_client);
-
 					return -1;
 				}else{
 					write(socket_client,b,cb);
 				}
 			}
+			
 		}else{
-		
+
+					
+				
 		}	
 	}
 	close(socket_serveur);
