@@ -27,11 +27,13 @@ int main (/*int argc, char **argv*/void)
 			/* traitement d ’ erreur */
 			return -1;
 		}
+		FILE* truc = fdopen(socket_client,"w+");
 		pid_t pid = 0;
 		if ((pid=fork())==0){
 			/* On peut maintenant dialoguer avec le client */
 			const char * message_bienvenue = "Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément !\n" ;
 			sleep(1);
+			
 			write ( socket_client , message_bienvenue , strlen(message_bienvenue));
 	
 			while(1){
@@ -43,7 +45,12 @@ int main (/*int argc, char **argv*/void)
 		
 				write(socket_client,buf,size);*/
 				int cb=0;
-				cb = recv(socket_client,b,sizeof(b),0);
+				//cb = recv(socket_client,b,sizeof(b),0);
+				char tmp[60]="";
+				fprintf(truc,"<mustached_server>");
+				if(fgets(tmp,60,truc)!=NULL){
+					fprintf(truc,"%s",tmp);
+				}
 				if( cb <= 0 )
 		   		{
 		   			printf("client deconnecté\n");
