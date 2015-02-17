@@ -34,6 +34,20 @@ int main (/*int argc, char **argv*/void)
 		}
 		pid_t pid = 0;
 		if ((pid=fork())==0){
+			int requeteValable=0;
+			while(requeteValable==0){
+				requeteValable=0;
+				char tmp[500]="";
+				char tmp2[4]="";
+				if(fgets(tmp,500,truc)!=NULL){
+					strncpy(tmp2,tmp,3);
+					printf("%s",tmp2);
+					if(strcmp(tmp2,"GET")==0){
+						printf("GET VALIDE");
+					}
+					
+				}
+			}
 			/* On peut maintenant dialoguer avec le client */
 			const char * message_bienvenue = "Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément !\n" ;
 			sleep(1);
@@ -55,8 +69,8 @@ int main (/*int argc, char **argv*/void)
 				//cb = recv(socket_client,b,sizeof(b),0);
 				
 				if(fgets(tmp,500,truc)!=NULL){
-					//printf(tmp);
-					fprintf(truc,"<mustached_server> %s",tmp);
+					printf(tmp);
+					//fprintf(truc,"<mustached_server> %s",tmp);
 				}
 				/*if( cb <= 0 )
 		   		{

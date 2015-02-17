@@ -47,7 +47,7 @@ int creer_serveur(int port){
 void traitement_signal ( int sig )
 {
 	if(sig==17){
-		printf ( "Client Déconnecté" );
+		printf ( "Client Déconnecté " );
 	}
 	printf ( "Signal %d reçu \n" , sig );
 	waitpid(-1, NULL, WNOHANG);			
