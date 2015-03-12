@@ -37,37 +37,34 @@ int main (/*int argc, char **argv*/void)
 		fprintf(truc,"Hello\n");
 			int requeteValable=0;
 			while(requeteValable==0){
-				requeteValable=1;
 				char tmp[500]="";
 				int tmp2=0;
 				int indiceDeuxiemeMot=0;
 				int indiceTroisiemeMot=0;
-				fprintf(truc,"passe par la 2");
+				fprintf(truc,"passe par la 2\n");
 				if(fgets(tmp,500,truc)!=NULL){
 					if(tmp[0]=='G'&&tmp[1]=='E'&&tmp[2]=='T'){
-						fprintf(truc,"GET VALIDE");
+						fprintf(truc,"GET VALIDE\n");
 						int i =0;
 						int tmp3 = strlen(tmp);
 						for(i = 0; i < tmp3;i++){
 							if(tmp[i]==' '){
 								if(indiceDeuxiemeMot==0&&indiceTroisiemeMot==0){
-									indiceDeuxiemeMot=i;
+									indiceDeuxiemeMot=i+1;
 								}else{
-									indiceTroisiemeMot=i;
+									indiceTroisiemeMot=i+1;
 								}
 								tmp2++;
 							}
 						}
 						if (tmp2==2){
-							fprintf(truc,"Contient 3 mots");
-						}else{
-							requeteValable=0;
+							fprintf(truc,"Contient 3 mots\n");
+							if(tmp[indiceTroisiemeMot]=='H'&&tmp[indiceTroisiemeMot+1]=='T'&&tmp[indiceTroisiemeMot+2]=='T'&&tmp[indiceTroisiemeMot+3]=='P'&&tmp[indiceTroisiemeMot+4]=='/'&&tmp[indiceTroisiemeMot+5]=='1'&&tmp[indiceTroisiemeMot+6]=='.'&&(tmp[indiceTroisiemeMot+7]=='0'||tmp[indiceTroisiemeMot+7]=='1')){
+								fprintf(truc,"HTTP/M.m Valide\n");
+								requeteValide=1;
+							}
 						}
-					}else{
-						requeteValable=0;
 					}
-				}else{
-					requeteValable=0;
 				}
 					
 					
@@ -83,7 +80,7 @@ int main (/*int argc, char **argv*/void)
 			/* On peut maintenant dialoguer avec le client */
 			const char * message_bienvenue = "Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément !\n" ;
 			sleep(1);
-			fprintf(tmp,"%s",message_bienvenue);
+			fprintf(truc,"%s",message_bienvenue);
 			//write ( socket_client , message_bienvenue , strlen(message_bienvenue));
 			
 				
