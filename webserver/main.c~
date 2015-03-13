@@ -61,22 +61,27 @@ int main (/*int argc, char **argv*/void)
 							fprintf(truc,"Contient 3 mots\n");
 							if(tmp[indiceTroisiemeMot]=='H'&&tmp[indiceTroisiemeMot+1]=='T'&&tmp[indiceTroisiemeMot+2]=='T'&&tmp[indiceTroisiemeMot+3]=='P'&&tmp[indiceTroisiemeMot+4]=='/'&&tmp[indiceTroisiemeMot+5]=='1'&&tmp[indiceTroisiemeMot+6]=='.'&&(tmp[indiceTroisiemeMot+7]=='0'||tmp[indiceTroisiemeMot+7]=='1')){
 								fprintf(truc,"HTTP/M.m Valide\n");
-								requeteValide=1;
+								while(requeteValable==0){
+									char tmp4[500]="";
+									if(fgets(tmp4,500,truc)!=NULL){
+										fprintf(truc,"Passe par la 3\n");
+										if(strcmp(tmp4, "\r\n") == 0||strcmp(tmp4, "\n") == 0){
+											requeteValable=1;
+											fprintf(truc,"Ligne vide\n");
+										}
+									}
+								}
+								requeteValable=1;
+								fprintf(truc,"HTTP/1.1 400 Bad Request\r\n");
+								fprintf(truc,"Connection: close\r\n");
+								fprintf(truc,"Content-Length: 17\r\n");
+								fprintf(truc,"\r\n");
+								fprintf(truc,"400 Bad request\r\n");
 							}
 						}
 					}
-				}
-					
-					
-					
-					/*strncpy(tmp,tmp2,3);
-					printf("%s",tmp2);
-					if(strcmp(tmp2,"GET")==0){
-						printf("GET VALIDE");
-					}*/
-					
-				}
-			
+				}		
+			}	
 			/* On peut maintenant dialoguer avec le client */
 			const char * message_bienvenue = "Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément ! Bienvenue sur le serveur de Ludovic et Clément !\n" ;
 			sleep(1);
