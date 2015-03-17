@@ -16,8 +16,9 @@ int main (/*int argc, char **argv*/void)
 		return 42;
 	}
 	printf ("Need an advice ?\n");*/
+
 	int socket_serveur = creer_serveur(8080);
-	initialiser_signaux();
+	initialiser_signaux();	
 	while(1){
 		int socket_client ;
 		socket_client = accept (socket_serveur,NULL,0);
@@ -43,6 +44,8 @@ int main (/*int argc, char **argv*/void)
 				int indiceTroisiemeMot=0;
 				fprintf(truc,"passe par la 2\n");
 				if(fgets(tmp,500,truc)!=NULL){
+					
+					
 					if(tmp[0]=='G'&&tmp[1]=='E'&&tmp[2]=='T'){
 						fprintf(truc,"GET VALIDE\n");
 						int i =0;
@@ -62,8 +65,10 @@ int main (/*int argc, char **argv*/void)
 							if(tmp[indiceTroisiemeMot]=='H'&&tmp[indiceTroisiemeMot+1]=='T'&&tmp[indiceTroisiemeMot+2]=='T'&&tmp[indiceTroisiemeMot+3]=='P'&&tmp[indiceTroisiemeMot+4]=='/'&&tmp[indiceTroisiemeMot+5]=='1'&&tmp[indiceTroisiemeMot+6]=='.'&&(tmp[indiceTroisiemeMot+7]=='0'||tmp[indiceTroisiemeMot+7]=='1')){
 								fprintf(truc,"HTTP/M.m Valide\n");
 								while(requeteValable==0){
+									
 									char tmp4[500]="";
 									if(fgets(tmp4,500,truc)!=NULL){
+										printf("truc");
 										fprintf(truc,"Passe par la 3\n");
 										if(strcmp(tmp4, "\r\n") == 0||strcmp(tmp4, "\n") == 0){
 											requeteValable=1;
@@ -76,9 +81,21 @@ int main (/*int argc, char **argv*/void)
 								fprintf(truc,"Connection: close\r\n");
 								fprintf(truc,"Content-Length: 17\r\n");
 								fprintf(truc,"\r\n");
-								fprintf(truc,"OK MOtherfucker\r\n");
+								fprintf(truc,"OK\r\n");
 							}
+						}else{
+							fprintf(truc,"HTTP/1.1 400 Bad Request\r\n");
+							fprintf(truc,"Connection: close\r\n");
+							fprintf(truc,"Content-Length: 17\r\n");
+							fprintf(truc,"\r\n");
+							fprintf(truc,"400 Bad Request\r\n");
 						}
+					}else{
+						fprintf(truc,"HTTP/1.1 400 Bad Request\r\n");
+						fprintf(truc,"Connection: close\r\n");
+						fprintf(truc,"Content-Length: 17\r\n");
+						fprintf(truc,"\r\n");
+						fprintf(truc,"400 Bad Request\r\n");
 					}
 				}		
 			}	
