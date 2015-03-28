@@ -67,4 +67,12 @@ void initialiser_signaux ( void )
 	traitement_signal(tmp);
 	
 }
+char *fgets_or_exit(char *buffer, int size, FILE *stream){
+	if(fgets(buffer,size,stream)==NULL){
+		exit(0);
+		return NULL;
+	}else{
+		return buffer;
+	}
+}
 
